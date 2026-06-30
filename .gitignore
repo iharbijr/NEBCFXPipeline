@@ -1,0 +1,9 @@
+# 1. Ignore absolutely everything in the project
+*
+
+# 2. Un-ignore the .gitignore file itself (so it gets pushed)
+!.gitignore
+
+# 3. Un-ignore the folder AND everything inside it
+!Water_Pipeline/
+!Water_Pipeline/**
