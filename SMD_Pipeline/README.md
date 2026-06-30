@@ -4,7 +4,7 @@ This note sets out how to calibrate the Non-Equilibrium Barotropic (NEB) closure
 parameters **N** (delay index) and **K** (relaxation rate) for a single water
 flashing case, against experimental nozzle data. It explains what each parameter
 does physically, the order in which to tune them, why the calibration cannot be
-taken directly from a 1D model, and the design of experiments (DoE) used to map
+taken directly from the 1D-DEM model, and the design of experiments (DoE) used to map
 the response surface.
 
 ---
@@ -13,7 +13,7 @@ the response surface.
 
 The NEB closure replaces a finite-rate flashing model with a single-valued
 barotropic material law `ρ(P)` supplied to the CFD solver. The flow expands
-along the inlet isentrope; below the nucleation pressure `P_nuc` the liquid
+along the inlet isentrope; below the binodal pressure `P_sat` the liquid
 enters a metastable, non-equilibrium state and relaxes toward equilibrium as it
 depressurises. The degree of relaxation is governed by a stretched-exponential
 closure on the normalized pressure `Π`:
@@ -23,10 +23,10 @@ closure on the normalized pressure `Π`:
 ```
 
 where `γ` is the **equilibrated mass fraction** of the mixture, and for water
-`Π = P / P_nuc` (inception-anchored, since the liquid spinodal is at negative
+`Π = P / P_sat` (inception-anchored, since the liquid spinodal is at negative
 pressure). The two free parameters are:
 
-- **N — the delay index** (penetration / nucleation delay),
+- **N — the delay index** (penetration / nucleation delay/ attainable liquid superheat),
 - **K — the relaxation rate** (strength of the drive toward equilibrium).
 
 Calibration means finding the `(N, K)` pair for which the CFD reproduces the
@@ -53,7 +53,7 @@ therefore the primary lever for matching the experimental choked mass flow rate.
 
 `K` sets how sharply the mixture relaxes toward equilibrium once nucleation is
 under way. Large `K` drives the fluid to equilibrium almost immediately below
-`P_nuc` (approaching the Homogeneous Equilibrium Model, HEM); small `K` spreads
+`P_sat` (approaching the Homogeneous Equilibrium Model, HEM); small `K` spreads
 the relaxation out toward full delay (approaching the frozen-liquid limit).
 
 `K` is calibrated **after** `N`, because the two are not independent in their
