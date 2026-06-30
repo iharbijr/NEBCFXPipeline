@@ -5,5 +5,5 @@
 !.gitignore
 
 # 3. Un-ignore the folder AND everything inside it
-!Water_Pipeline/
-!Water_Pipeline/**
+!SMD_Pipeline/
+!SMD_Pipeline/**
